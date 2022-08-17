@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {ServersService} from '../servers/servers.service';
 
 @Component({
   selector: 'app-home',
@@ -19,4 +20,9 @@ export class HomeComponent implements OnInit {
   loadServers() {
     this.router.navigate(['/servers']);
   }
+
+  loadServer(id: number) {
+    this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: 1}, fragment: 'loading'});
+  }
+
 }
