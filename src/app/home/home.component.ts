@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ServersService} from '../servers/servers.service';
+import {AuthService} from '../auth.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private authService: AuthService
   ) { }
 
   ngOnInit() {
@@ -25,4 +27,11 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/servers', id, 'edit'], {queryParams: {allowEdit: 1}, fragment: 'loading'});
   }
 
+  onLogin() {
+    this.authService.login();
+  }
+
+  onLogout() {
+    this.authService.logout();
+  }
 }
